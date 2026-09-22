@@ -5,8 +5,16 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>blackhub</title>
-    <script type="module" crossorigin src="assets/index-D_GlYlbh.js"></script>
-    <link rel="stylesheet" crossorigin href="assets/index-Bs72G6MR.css">
+
+    <script>
+      ;(function () {
+        var dark = localStorage.getItem('theme') === 'dark'
+        document.documentElement.classList.toggle('dark', dark)
+        document.documentElement.style.background = dark ? '#101828' : '#ffffff'
+      })()
+    </script>
+    <script type="module" crossorigin src="/assets/index-Bgt03-Vp.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BGl6KDXX.css">
   </head>
   <body class="dark:bg-gray-900">
     <div id="app"></div>
