@@ -1,0 +1,1 @@
+import{U as s,V as a,r as i}from"./index-gg5FGADk.js";const r={async createDispute(e){return s("dispute/open",e)},async fetchAll(){return s("dispute/getAll")}},p=a("disputeStore",()=>{const e=i([]);async function u(t){await r.createDispute(t)}async function n(){const t=await r.fetchAll();e.value=t.result}return{disputes:e,openDispute:u,getAllDisputes:n}});export{p as u};
