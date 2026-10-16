@@ -1,22 +1,68 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>blackhub</title>
+    <meta name="description" content="DeepHub — anonymous digital marketplace" />
 
+    <!--
+      Never leak the .onion address (or any path) to a third party through the
+      Referer header. Combined with the in-app rule that every outbound link is
+      rel="noreferrer", this keeps navigation paths private.
+    -->
+    <meta name="referrer" content="no-referrer" />
+    <!--
+      Do not index, preview, or archive this application anywhere.
+    -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+
+    <!--
+      CSP. NOTE: a meta-tag CSP cannot express `frame-ancestors` or
+      `report-uri` — those must come from the server as a real header. See
+      docs/privacy/TOR-BROWSER.md for the header the deployment must send.
+
+      'unsafe-inline' is required for style-src because the theme bootstrap below
+      writes an inline style and the UI uses inline style attributes. Vue does
+      not use eval, so script-src stays clean.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' ws: wss: http: https:; base-uri 'none'; form-action 'none'"
+    />
+
+    <title>DeepHub</title>
+
+    <!--
+      Anti-flash theme bootstrap. Reads the same key useTheme writes and mirrors
+      the OKLCH tokens from src/assets/main.css so the very first paint matches
+      the persisted theme. Keep these values in sync with --background.
+    -->
     <script>
       ;(function () {
-        var dark = localStorage.getItem('theme') === 'dark'
-        document.documentElement.classList.toggle('dark', dark)
-        document.documentElement.style.background = dark ? '#101828' : '#ffffff'
+        try {
+          var dark = localStorage.getItem('theme') === 'dark'
+          var locale = localStorage.getItem('dephub_locale')
+          document.documentElement.classList.toggle('dark', dark)
+          document.documentElement.style.background = dark
+            ? 'oklch(0.13 0.01 240)'
+            : 'oklch(0.985 0.005 240)'
+          if (locale === 'ru' || locale === 'en') {
+            document.documentElement.setAttribute('lang', locale)
+          }
+        } catch (e) {
+          /* localStorage unavailable (private mode) — fall back to defaults */
+        }
       })()
     </script>
-    <script type="module" crossorigin src="/assets/index-gg5FGADk.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BHWNjvFf.css">
+    <script type="module" crossorigin src="/assets/index-DoDm2tFm.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-vue-CjBt-GEX.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-query-UEsZwQGi.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-i18n-sM6pziJR.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-ws-B0fDG-Tj.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-BSwpbRjp.css">
   </head>
-  <body class="dark:bg-gray-900">
+  <body>
     <div id="app"></div>
   </body>
 </html>

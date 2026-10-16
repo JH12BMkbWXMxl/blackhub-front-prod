@@ -1,1 +1,0 @@
-import{P as e}from"./index-gg5FGADk.js";const i={[e.Ssn]:[{key:"full_name",title:"Full name"},{key:"state",title:"State"},{key:"zip",title:"ZIP"},{key:"city",title:"City"},{key:"dob_full",title:"Date of birth"},{key:"credit_score",title:"Credit score"},{key:"price",title:"Price",trailing:!0},{key:"actions"}]},o=t=>i[t]??[];export{o as c};

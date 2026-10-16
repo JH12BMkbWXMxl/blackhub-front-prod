@@ -1,0 +1,5 @@
+# DeepHub must never be indexed, previewed, or archived.
+# Search engines and crawlers that reach the marketplace from a clearnet mirror
+# or a leaked link must not build a public index of it.
+User-agent: *
+Disallow: /
